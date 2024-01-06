@@ -3,6 +3,33 @@
 ## Overview
 This project is a comprehensive Library Management System built using the PHP Laravel Framework. It encompasses a range of functionalities and controllers to manage various aspects of a library's operations efficiently.
 
+## Usage
+### Installation Steps
+1. Clone the repository: git clone "https://github.com/nikolaiM12/University-PHP-Project"
+2. Navigate to the project directory: cd University-PHP-Project 
+3. Install dependencies:
+    - **`composer install`**
+4. Generate application key:
+    - **`php artisan key:generate`**
+5. Create .env file:
+If `.env` file doesn't exist, create it by copying `.env.example`:
+    - **`cp .env.example .env`**
+6. Then configure the `.env` file with your database connection settings:
+```php
+DB_CONNECTION=your_database_connection
+DB_HOST=your_database_host
+DB_PORT=your_database_port
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_user
+DB_PASSWORD=your_database_password
+```
+7. Run migrations and seed database:
+    - **`php artisan migrate:refresh --seed`**: this command will refresh migrations and seed the database with sample data
+8. Serve the application:
+Start the Laravel development server:
+    - **`php artisan serve`**
+9. You're all set! Start exploring and using the Library Management System.
+
 ### Author - Overview
 1. Controller:
 The `AuthorController` manages author-related operations within the Library Management System:
