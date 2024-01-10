@@ -118,13 +118,9 @@ class UserService implements IUserService
 
     public function SearchUsers($query)
     {
-        $searchQuery = SqlQueriesConstant::SEARCH_USERS;
-
-        $result = User::where(function ($q) use ($query) {
-            $q->where('name', 'LIKE', '%' . $query . '%')
-              ->orWhere('email', 'LIKE', '%' . $query . '%');
-            })
-            ->get();
+        $result = User::where('name', 'LIKE', '%' . str_replace('%', '\%', $query) . '%')
+        ->orWhere('email', 'LIKE', '%' . str_replace('%', '\%', $query) . '%')
+        ->get();
 
         if ($result->isEmpty()) 
         {
@@ -133,7 +129,6 @@ class UserService implements IUserService
 
         return $result;
     }
-
 
     public function UploadProfilePhoto($user, $imageData)
     {

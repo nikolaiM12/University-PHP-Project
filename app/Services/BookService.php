@@ -140,14 +140,13 @@ class BookService implements IBookService
 
     public function SearchBooks($query)
     {
-        $result = Book::where('title', 'like', "%$query%")
+        $result = Book::where('title', 'like', '%' . str_replace('%', '\%', $query) . '%')
         ->orWhereHas('author', function ($queryBuilder) use ($query) {
-            $queryBuilder->where('name', 'like', "%$query%");
+            $queryBuilder->where('name', 'like', '%' . str_replace('%', '\%', $query) . '%');
         })
         ->get();
 
-        if ($result->isEmpty()) 
-        {
+        if ($result->isEmpty()) {
             throw new \RuntimeException('No books found matching the search criteria.');
         }
 
